@@ -45,7 +45,7 @@ const SendCalculator = () => {
   }, [sendTranfer]);
   return (
     <View style={{ marginTop: 80, height: "75%", paddingHorizontal: "5%" }}>
-      <Box style={{ paddingVertical: 10, alignItems: "center" }}>
+      <View style={{ paddingVertical: 10, alignItems: "center" }}>
         <View style={styles.moneyContainer}>
           <View style={styles.moneyStyle}>
             <Text style={styles.pay}>You Pay</Text>
@@ -78,7 +78,7 @@ const SendCalculator = () => {
           />
         </View>
 
-        <View style={{ height: "55%", alignItems: "center" }}>
+        <View style={{ borderColor: "red", alignItems: "center", borderWidth: 1 }}>
           <CustomKeyboard
             dot={true}
             deleteLet={() => setsendTranfer((prev) => prev.slice(0, -1))}
@@ -88,7 +88,7 @@ const SendCalculator = () => {
             <Text style={styles.touchText}>Continue</Text>
           </TouchableOpacity>
         </View>
-      </Box>
+      </View>
     </View>
   );
 };

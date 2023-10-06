@@ -6,7 +6,8 @@ import {
     TouchableOpacity,
     Dimensions,
     Keyboard,
-    KeyboardAvoidingView
+    KeyboardAvoidingView,
+    StatusBar
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Gradient from "../../components/Gradient";
@@ -14,8 +15,9 @@ import CardSelection from "../../components/CardSelection";
 import Box from "../../components/Box";
 import { Image, ScrollView } from "react-native";
 import { useEffect, useState, useLayoutEffect } from "react";
-import { FontAwesome5, Entypo } from '@expo/vector-icons';
+import { FontAwesome5, Entypo, Ionicons } from '@expo/vector-icons';
 import { behavior } from "../../utils/platform";
+import { DARK, DARK_BLACK, WHITE, YELLOW } from "../../style/styles";
 
 let { height, width } = Dimensions.get("window");
 const SelectCard = () => {
@@ -27,20 +29,19 @@ const SelectCard = () => {
     const [cvvValue, setCvvValue] = useState("");
     const [cvvFalse, setCvvfalse] = useState(false);
     const [keyboard, setKeyboardShow] = useState(false);
-    const [sending, setSending] = useState(false);
-    const [success, setSuccess] = useState(false);
     const [completed, setCompleted] = useState(false);
     const next = () => {
         if (cvvValue == 122) {
             Keyboard.dismiss()
-            setSending(true);
             setTimeout(() => {
-                setSuccess(false);
-                setSending(false);
                 setCvvfalse(false);
-                setKeyboardShow(false);
                 setCvvValue("");
                 setCompleted("send");
+                setKeyboardShow(false)
+                navigation.navigate("Other", {
+                    screen: "CheckTransfer",
+                    params: completed
+                })
             }, 3000);
 
             setTimeout(() => {
@@ -50,7 +51,6 @@ const SelectCard = () => {
             setCvvfalse(true);
         }
     };
-    console.log(behavior());
 
     useEffect(() => {
         Keyboard.dismiss
@@ -62,9 +62,10 @@ const SelectCard = () => {
                 height: "100%",
                 position: "relative"
             }}
-                behavior={"padding"}
+                behavior={behavior()}
 
             >
+                <StatusBar backgroundColor={DARK_BLACK} />
 
                 <ScrollView contentContainerStyle={{
                     flex: 1,
@@ -72,6 +73,18 @@ const SelectCard = () => {
 
                     height: "100%"
                 }}>
+
+                    <View style={{ alignItems: "center", justifyContent: "flex-start", flex: 0.5 }}>
+                        <View style={{ width: "98%" }}>
+                            <CardSelection
+                                navigation={navigation}
+                                selectcard={(e) => {
+                                    setCardSelect(e);
+                                    setKeyboardShow(true);
+                                }}
+                            />
+                        </View>
+                    </View>
                     {keyboard ? (
                         <View
                             style={{
@@ -80,8 +93,9 @@ const SelectCard = () => {
                                 height: "100%",
                                 justifyContent: "center",
                                 zIndex: 2,
-                                top: 0,
-                                backgroundColor: "#060606aa",
+                                bottom: 0,
+                                backgroundColor: DARK_BLACK + "9a",
+                                flex: 1
 
                             }}
                         >
@@ -89,17 +103,18 @@ const SelectCard = () => {
                             <View style={{
                                 position: "absolute",
                                 width: "100%",
-                                height: 250,
+                                height: 350,
                                 backgroundColor: "#060606",
                                 bottom: 0,
-                                marginBottom: 30
+                                marginBottom: 0
                             }}>
 
                                 <TouchableOpacity onPress={() => setKeyboardShow(false)} style={{
                                     position: "absolute",
-                                    top: 0
+                                    top: 10,
+                                    left: 10
                                 }}>
-                                    <Entypo name="chevron-small-down" size={35} color="#fff" />
+                                    <Ionicons name="ios-close-sharp" size={30} color={WHITE} />
                                 </TouchableOpacity>
                                 <Text style={styles.cvvTitle}>
                                     Enter the CVV for Santander
@@ -118,6 +133,7 @@ const SelectCard = () => {
                                         borderRadius: 10,
                                         textAlign: "center",
                                         fontFamily: "Montserrat",
+                                        fontSize: 20
                                     }}
                                     keyboardType="decimal-pad"
                                     onChangeText={(e) => setCvvValue(e)}
@@ -138,132 +154,10 @@ const SelectCard = () => {
                             </View>
                         </View>
                     ) : null}
-                    <View style={{ alignItems: "center", justifyContent: "flex-start", flex: 1 }}>
-                        <View style={{ width: "98%" }}>
-                            <CardSelection
-                                navigation={navigation}
-                                selectcard={(e) => {
-                                    setCardSelect(e);
-                                    setKeyboardShow(true);
-                                }}
-                            />
-                        </View>
-                    </View>
 
-                    
-                    {sending ? (
-                        <View
-                            style={{
-                                position: "absolute",
-                                width: width,
-                                backgroundColor: "#060606",
-                                top: 0,
-                                zIndex: 4,
-                                flex: 1,
-                                height: height,
-                                justifyContent: "center",
-                                flexDirection: "column",
-                                alignItems: "center",
-                            }}
-                        >
-                            <Image
-                                source={require("../../assets/images/transferMoneySending.gif")}
-                                style={{ width: 250, height: 250 }}
-                            />
-                            <Text
-                                style={{
-                                    color: "#FF6A00",
-                                    fontFamily: "MontserratMedium",
-                                    fontSize: 20,
-                                }}
-                            >
-                                Sending a transfer request
-                            </Text>
-                        </View>
-                    ) : null}
-                    {success ? (
-                        <View
-                            style={{
-                                position: "absolute",
-                                width: width,
-                                backgroundColor: "#060606",
-                                top: 0,
-                                zIndex: 4,
-                                flex: 1,
-                                height: height,
-                                justifyContent: "center",
-                                flexDirection: "column",
-                                alignItems: "center",
-                            }}
-                        >
-                            <Image
-                                source={require("../../assets/images/transferMoneySending.gif")}
-                                style={{ width: 250, height: 250 }}
-                            />
-                            <Text
-                                style={{
-                                    color: "#FF6A00",
-                                    fontFamily: "MontserratMedium",
-                                    fontSize: 20,
-                                }}
-                            >
-                                Sending a transfer request
-                            </Text>
-                        </View>
-                    ) : null}
-                    {completed == "bad" ? (
-                        <View
-                            style={{
-                                position: "absolute",
-                                width: width,
-                                backgroundColor: "#060606",
-                                top: 0,
-                                zIndex: 4,
-                                flex: 1,
-                                height: height,
-                                justifyContent: "center",
-                                flexDirection: "column",
-                                alignItems: "center",
-                            }}
-                        >
-                            <Text
-                                style={{
-                                    color: "#FF6A00",
-                                    fontFamily: "MontserratMedium",
-                                    fontSize: 20,
-                                }}
-                            >
-                                Transfer failed
-                            </Text>
-                        </View>
-                    ) : null}
-                    {completed == "send" ? (
-                        <View
-                            style={{
-                                position: "absolute",
-                                width: width,
-                                backgroundColor: "#060606",
-                                top: 0,
-                                zIndex: 4,
-                                flex: 1,
-                                height: height,
-                                justifyContent: "center",
-                                flexDirection: "column",
-                                alignItems: "center",
-                            }}
-                        >
-                            <Image style={{ width: 80, height: 80 }} source={require("../../assets/images/success.gif")} />
-                            <Text
-                                style={{
-                                    color: "#FF6A00",
-                                    fontFamily: "MontserratMedium",
-                                    fontSize: 20,
-                                }}
-                            >
-                                Transfer successfully
-                            </Text>
-                        </View>
-                    ) : null}
+
+
+
                 </ScrollView>
 
             </KeyboardAvoidingView>
@@ -274,10 +168,11 @@ export default SelectCard;
 const styles = StyleSheet.create({
     cvvTitle: {
         color: "#fff",
-        marginVertical: 13,
         textAlign: "center",
         fontFamily: "Montserrat",
-        fontSize: 18
+        fontSize: 18,
+        marginBottom: 20,
+        marginTop: 25,
     },
     cvvTrue: {
         color: "#FF6A00",
@@ -294,6 +189,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
+
+        marginTop: 25
     },
     touchtext: {
         textAlign: "center",

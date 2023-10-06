@@ -121,7 +121,7 @@ export default function Autorization() {
         if (otpCode === "12345") {
             saveProfile()
             navigation.navigate('Home', {
-                screen: 'Main',
+                screen: 'Menu',
             })
         }
     }
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
         gap: 20
     },
     title: {
-        fontFamily: "MontserratRegular",
+        fontFamily: "Montserrat",
         fontSize: 20,
         color: "#FFB332",
         textAlign: "center"

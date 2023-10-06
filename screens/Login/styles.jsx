@@ -37,7 +37,7 @@ export const SplitBoxText = styled.Text`
  font-size: 20px;
  text-align: center;
  color: #e5e5e5;
- font-family:MontserratRegular
+ font-family:Montserrat
 `;
 
 

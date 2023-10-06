@@ -10,6 +10,7 @@ import {
     TextInput,
     TouchableOpacity,
     Pressable,
+    Platform,
 } from "react-native";
 import { CustomStyle, GlobalStyle } from "../../style/styles";
 import { router, useRoute, useNavigation, useFocusEffect } from "@react-navigation/native";
@@ -327,7 +328,7 @@ let styles = StyleSheet.create({
 
     phonePasscodeNumber: {
         height: 20,
-        fontFamily: "MontserratRegular",
+        fontFamily: "Montserrat",
         color: "#fff",
         fontSize: 18,
         width: 60,

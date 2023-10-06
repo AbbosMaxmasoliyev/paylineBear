@@ -20,6 +20,7 @@ import { SimpleLineIcons, AntDesign } from '@expo/vector-icons';
 import { CountrySvgImage } from "../../resource/country";
 
 import DynamicHeader from "../../components/DinamicHeader";
+import { DARK_BLACK } from "../../style/styles";
 
 const { height, width } = Dimensions.get("screen")
 const Send = () => {
@@ -226,7 +227,7 @@ const Send = () => {
     return (
         <Gradient>
             <View style={styles.container}>
-
+                <StatusBar backgroundColor={DARK_BLACK} />
                 <SafeAreaView style={
                     {
                         flex: 5,
@@ -246,7 +247,9 @@ const Send = () => {
                                 </Text>
                             </View>
                             <Pressable style={styles.btn} onPress={() => {
-                                navigation.navigate("Home_Send_NewRecepient")
+                                navigation.navigate("Other", {
+                                    screen: "NewRecepient"
+                                })
                             }}>
                                 <View style={{
                                     width: 45,

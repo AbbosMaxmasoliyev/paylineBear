@@ -6,6 +6,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Entypo } from "@expo/vector-icons"
 import { useNavigation } from "@react-navigation/native"
 import { headerLeft } from '../../components/headerLeft';
+import { DARK_BLACK } from '../../style/styles';
+import Request from '../Other/Request';
+
 
 const Stack = createNativeStackNavigator();
 const Index = () => {
@@ -31,13 +34,35 @@ const Index = () => {
                     headerShown: true,
 
                     headerStyle: {
-                        backgroundColor: "#060606f9"
+                        backgroundColor: DARK_BLACK
                     },
                     headerTitleAlign: "center",
                     headerTintColor: "#fff",
-                    headerBackTitle: "Back"
+                    headerBackTitle: "Back",
+                    headerBackTitleStyle: {
+                        fontFamily: "MontserratMedium",
+                        fontSize: 15
+                    }
                 }
             } />
+            <Stack.Screen name="Request" component={Request} options={
+                {
+                    headerShown: true,
+
+                    headerStyle: {
+                        backgroundColor: DARK_BLACK
+                    },
+                    headerTitleAlign: "center",
+                    headerTintColor: "#fff",
+                    headerBackTitle: "Back",
+                    headerBackTitleStyle: {
+                        fontFamily: "MontserratMedium",
+                        fontSize: 15
+                    }
+                }
+            } />
+
+
 
 
 

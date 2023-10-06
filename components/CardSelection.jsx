@@ -8,6 +8,7 @@ import {
     FlatList,
 } from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native";
 
 
 const MyCard = React.memo(({ name, image, number, keypress }) => {
@@ -23,7 +24,9 @@ const MyCard = React.memo(({ name, image, number, keypress }) => {
     );
 });
 
-const CardSelection = ({ selectcard, navigation }) => {
+const CardSelection = ({ selectcard }) => {
+
+    const navigation = useNavigation()
     const cardsData = [
         {
             name: "Bank Mellinium",
@@ -70,7 +73,11 @@ const CardSelection = ({ selectcard, navigation }) => {
                     marginTop: 20,
                     paddingHorizontal: 7
                 }}
-                onPress={() => navigation.navigate("Home_AddCard")}
+                onPress={() => navigation.navigate("Other",
+                    {
+                        screen: "AddCard"
+                    }
+                )}
             >
                 <View style={{
                     width: 40,
@@ -81,7 +88,7 @@ const CardSelection = ({ selectcard, navigation }) => {
                     alignItems: "center",
                     borderRadius: 20
                 }}>
-                    <MaterialCommunityIcons name="credit-card-plus-outline" size={24} color="#fff" />
+                    <MaterialCommunityIcons name="credit-card-plus-outline" size={24} color="#FF6A00" />
                 </View>
                 <Text style={styles.text}>Add Card</Text>
             </TouchableOpacity>
@@ -115,7 +122,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         borderRadius: 20,
         height: 65,
-        backgroundColor:"#0000005a"
+        backgroundColor: "#0000005a"
     },
     image: {
         width: 30,

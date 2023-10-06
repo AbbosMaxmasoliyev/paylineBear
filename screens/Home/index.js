@@ -9,6 +9,7 @@ import { MaterialIcons, SimpleLineIcons, MaterialCommunityIcons, Ionicons } from
 import { MobileNumberContext } from '../Login/loginContext';
 import { SvgFromXml } from 'react-native-svg';
 import { limits } from '../../assets/icons';
+import { DARK_BLACK } from '../../style/styles';
 const Tab = createBottomTabNavigator();
 
 const Index = () => {
@@ -23,7 +24,7 @@ const Index = () => {
                     tabBarIcon: ({ color, size }) => {
                         let icon
 
-                        if (route.name === 'Home') {
+                        if (route.name === 'Menu') {
                             icon = <Ionicons name="grid-outline" size={25} color={color} />
                         }
                         else if (route.name === 'Limits') {
@@ -42,16 +43,15 @@ const Index = () => {
                 tabBarOptions={{
                     activeTintColor: '#fff', // Aktiv tabni rangi
                     inactiveTintColor: '#FF6B01', // Aktiv bo'lmagan tablar rangi
-
                 }}
 
 
             >
-                <Tab.Screen name="Home" component={Home}
+                <Tab.Screen name="Menu" component={Home}
                     options={{
                         headerShown: false,
                         tabBarStyle: {
-                            backgroundColor: "#282828",
+                            backgroundColor: DARK_BLACK,
 
                         },
                         tabBarLabel: 'Home',
@@ -64,7 +64,7 @@ const Index = () => {
                         headerShown: false,
                         tabBarLabelStyle: { fontSize: 10, },
                         tabBarStyle: {
-                            backgroundColor: "#282828",
+                            backgroundColor: DARK_BLACK,
 
                         },
                     }}
@@ -73,7 +73,7 @@ const Index = () => {
                     options={{
                         headerShown: false,
                         tabBarStyle: {
-                            backgroundColor: "#282828",
+                            backgroundColor: DARK_BLACK,
 
                         },
                         tabBarLabelStyle: { fontSize: 10, },

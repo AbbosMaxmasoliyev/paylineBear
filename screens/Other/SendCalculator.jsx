@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { StyleSheet, Text, View, Dimensions, Pressable, TouchableOpacity, StatusBar } from 'react-native'
 import Gradient from '../../components/Gradient'
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -7,6 +7,8 @@ import Box from "../../components/Box";
 import CustomKeyboard from "../../components/KeyboardNumber";
 import GoBack from "../../components/goBack";
 import { headerLeft } from "../../components/headerLeft";
+import { NewCard } from "../../Context/SendContext";
+import { DARK, GRAY } from "../../style/styles";
 
 
 const { width, height } = Dimensions.get("screen")
@@ -14,15 +16,18 @@ const { width, height } = Dimensions.get("screen")
 
 
 const Information = ({ info, title, subtitle, keyPress, not }) => {
-
+    const [cardData, setCardData] = useContext(NewCard)
+    console.log(cardData);
     return (
         <View style={styles.box}>
+            <StatusBar barStyle={"light-content"} backgroundColor={DARK} />
             <View style={{
                 flex: 2,
                 justifyContent: "center",
                 alignItems: "center",
                 height: "100%",
             }}>
+
                 <Text style={styles.title}>{title}</Text>
             </View>
             <View style={{
@@ -62,9 +67,7 @@ const SendMoneyCalculator = () => {
 
 
     }, [sendTranfer]);
-    useEffect(() => {
-      
-    }, [])
+
 
 
     const route = useRoute()
@@ -84,7 +87,7 @@ const SendMoneyCalculator = () => {
                     </Pressable>
                 </View>
                 <View style={styles.moneyStyle}>
-                    <Text style={styles.pay}>You Pay</Text>
+                    <Text style={styles.pay}>Recepients get</Text>
                     <Text style={styles.money}>{getMoney.amount}</Text>
                     <Pressable style={styles.pres}>
                         <Text style={styles.prestext}>PLN</Text>
@@ -106,7 +109,7 @@ const SendMoneyCalculator = () => {
                 />
             </View>
 
-            <View style={{ alignItems: "center", flex: 3, paddingVertical: 30, backgroundColor: "#06060655", flexShrink: 5 }}>
+            <View style={{ alignItems: "center", flex: 2.5, paddingVertical: 30, backgroundColor: DARK, flexShrink: 5 }}>
                 <CustomKeyboard
                     style={{
                         flex: 4
@@ -166,6 +169,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         width: "60%",
         paddingVertical: 5,
+        fontFamily: "MontserratMedium"
     },
     money: {
 
@@ -185,8 +189,8 @@ const styles = StyleSheet.create({
     pay: {
         color: "#fff",
         textAlign: "center",
-        fontFamily: "MontserratBold",
-        fontSize: 25
+        fontFamily: "MontserratMedium",
+        fontSize: 18
     },
     info: {
         width: "100%",
@@ -195,9 +199,9 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         gap: 15,
         borderBottomColor: "#DA630E",
-        borderBottomWidth: 0.3,
+        borderBottomWidth: 0.5,
         borderTopColor: "#DA630E",
-        borderTopWidth: 0.3,
+        borderTopWidth: 0.5,
         paddingVertical: 5,
         height: 110,
         flex: 0.9
@@ -226,16 +230,16 @@ const styles = StyleSheet.create({
 
     },
     touch: {
-        paddingVertical: 10,
+        paddingVertical: 15,
         paddingHorizontal: 40,
         backgroundColor: "#FF6B01",
-        borderRadius: 20,
+        borderRadius: 25,
 
     },
     touchText: {
         color: "#fff",
         fontFamily: "MontserratMedium",
-        fontSize: width / 15,
+        fontSize: 18,
         textAlign: "center",
     }
 });

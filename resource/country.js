@@ -1689,7 +1689,7 @@ const country = {
 const phoneCountry = getCountryWithPhoneCode()
 
 
-function getCountryWithPhoneCode() {
+export function getCountryWithPhoneCode() {
     const phoneCountry = {}
     let keys = Object.keys(country)
 
@@ -1698,16 +1698,15 @@ function getCountryWithPhoneCode() {
 
         phoneCountry[key] = country[item]
     })
+   
 
-    return phoneCountry
 }
 
 
-function CountrySvgImage({ code, styles, width = 30, height = 30,  }) {
-    
+function CountrySvgImage({ code, styles, width = 30, height = 30, }) {
     let xml = country[code].image
     return (
-        <SvgFromXml xml={xml} style={styles} width={width} height={height}  />
+        <SvgFromXml xml={xml} style={styles} width={width} height={height} />
     )
 }
 

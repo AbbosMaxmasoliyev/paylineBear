@@ -14,6 +14,7 @@ import Transactions from "../../components/Transactions";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Gradient from "../../components/Gradient";
+import { DARK, DARK_BLACK, GRAY } from "../../style/styles";
 const { width, height } = Dimensions.get("screen")
 
 const Main = () => {
@@ -41,7 +42,7 @@ const Main = () => {
 
     return (
         <Gradient style={styles.container} onPointerEnter={() => Keyboard.dismiss()}>
-            <StatusBar translucent barStyle={"dark-content"} backgroundColor={"#457585"} animated={true} networkActivityIndicatorVisible={true} />
+            <StatusBar translucent barStyle={"light-content"} backgroundColor={GRAY} animated={true} networkActivityIndicatorVisible={true} />
             <View style={styles.carouselContainer}>
                 <CarouselWrapper />
             </View>
@@ -58,14 +59,14 @@ const Main = () => {
                             justifyContent: "space-between",
                         }}
                     >
-                        <Pressable style={{ ...styles.back }} onPress={() => navigation.navigate("Home", { screen: "Request" })}>
+                        <Pressable style={{ ...styles.back }} onPress={() => navigation.navigate("Other", { screen: "Request" })}>
                             <Text style={styles.text}>Request</Text>
                         </Pressable>
                         <Pressable
                             style={{ ...styles.back }}
                             onPress={() => {
                                 console.log("ishlayapti");
-                                navigation.navigate("Home", { screen: "Send" })
+                                navigation.navigate("Menu", { screen: "Send" })
 
                             }}
                         >
@@ -107,7 +108,7 @@ export default Main;
 const styles = StyleSheet.create({
     carouselContainer: {
         height: 240,
-        backgroundColor: "#457585",
+        backgroundColor: GRAY,
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25,
         zIndex: 2,

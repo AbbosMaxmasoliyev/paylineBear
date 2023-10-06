@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, StatusBar, TouchableOpacity, Image } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import TransactionHistory from './TransactionHistory'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from "@react-navigation/native"
@@ -10,6 +10,12 @@ import { SvgFromXml } from 'react-native-svg';
 import { chevronLeft } from '../../resource/icons';
 import { headerLeft } from '../../components/headerLeft';
 import GoBack from '../../components/goBack';
+import Recepient from './NewRecepient';
+import AddCard from './AddCard';
+import { NewCard, NewRecepientContext } from '../../Context/SendContext';
+import { DARK, DARK_BLACK, GRAY } from '../../style/styles';
+import ChechTransfer from './ChechTransfer';
+import Request from './Request';
 
 
 
@@ -17,70 +23,111 @@ const Stack = createNativeStackNavigator();
 const Index = () => {
 
     const navigation = useNavigation()
-
+    const [newCard, setNewCard] = useState({
+        formattedNumber: "",
+        firstName: "",
+        lastName: ""
+    });
 
     return (
-        <Stack.Navigator screenOptions={{
-            headerShown: false,
-        }} >
+        <NewCard.Provider value={[newCard, setNewCard]}>
+            <Stack.Navigator screenOptions={{
+                headerShown: false,
+            }} >
 
-            <Stack.Screen name="TransactionHistory" component={TransactionHistory} options={
-                {
-                    headerShown: false
+                <Stack.Screen name="TransactionHistory" component={TransactionHistory} options={
+                    {
+                        headerShown: false
+                    }
                 }
-            }
-                initialParams={{ name: "salom" }}
-            />
-            <Stack.Screen name="SendCalculator" component={SendCalculator} options={
-                {
-                    headerShown: true,
-                    headerTitle: "Send Calculator",
-                    headerTitleAlign: "center",
-                    headerStyle: {
+                    initialParams={{ name: "salom" }}
+                />
+                <Stack.Screen name="SendCalculator" component={SendCalculator} options={
+                    {
+                        headerShown: true,
+                        headerTitle: "",
+                        headerTitleAlign: "center",
+                        headerStyle: {
 
-                        backgroundColor: "#060606f9"
-                    },
-                    headerTintColor: "#fff",
-                    headerTitleStyle: {
-                        fontSize: 18,
-                        fontFamily: "MontserratBold"
-                    },
-                    headerBackTitleStyle: {
-                        color: "#fff",
-                        fontFamily: "MontserratMedium",
-                        fontSize: 18
-                    },
-                    headerLeft: () => <GoBack name={"Back"} />
+                            backgroundColor: DARK
+                        },
+                        headerTintColor: "#fff",
+                        headerTitleStyle: {
+                            fontSize: 18,
+                            fontFamily: "MontserratBold"
+                        },
+                        headerBackTitleStyle: {
+                            color: "#fff",
+                            fontFamily: "MontserratMedium",
+                            fontSize: 18
+                        },
+                        headerLeft: () => <GoBack name={"Back"} />
+                    }
                 }
-            }
-                initialParams={{ name: "salom" }}
-            />
+                    initialParams={{ name: "salom" }}
+                />
 
-            <Stack.Screen name="SelectCard" component={SelectCard} options={
-                {
-                    headerShown: true,
-                    headerTitle: "Select Card",
-                    headerStyle: {
-                        backgroundColor: "#060606f9"
-                    },
-                    headerTintColor: "#fff",
-                    headerBackTitle: "Back",
-                    headerBackTitleStyle: {
-                        fontSize: 18,
-                        fontFamily: "MontserratMedium",
-                        color: "#fff"
-                    },
-                    headerTitleStyle: {
-                        fontSize: 18,
-                        fontFamily: "MontserratBold"
-                    },
+                <Stack.Screen name="SelectCard" component={SelectCard} options={
+                    {
+                        headerShown: true,
+                        headerTitle: "Select Card",
+                        headerStyle: {
+                            backgroundColor: DARK_BLACK
+                        },
+                        headerTintColor: "#fff",
+                        headerBackTitle: "Back",
+                        headerBackTitleStyle: {
+                            fontSize: 18,
+                            fontFamily: "MontserratMedium",
+                            color: "#fff"
+                        },
+                        headerTitleStyle: {
+                            fontSize: 18,
+                            fontFamily: "MontserratBold"
+                        },
 
+                    }
                 }
-            }
-                initialParams={{ name: "salom" }}
-            />
+                    initialParams={{ name: "salom" }}
+                />
+                <Stack.Screen name="NewRecepient" component={Recepient} options={
+                    {
+                        headerShown: true,
+                        headerTitle: "New Recepient",
+                        headerStyle: {
+                            backgroundColor: "#060606f9"
+                        },
+                        headerLeft: () => <GoBack name={"Back"} />,
+                        headerTitleAlign: "center",
+                        headerTintColor: "#fff",
+                    }
+                } />
 
-        </Stack.Navigator>
+                <Stack.Screen name="AddCard" component={AddCard} options={
+                    {
+                        headerShown: true,
+                        headerTitle: "New Recepient",
+                        headerStyle: {
+                            backgroundColor: "#060606f9"
+                        },
+                        headerLeft: () => <GoBack name={"Back"} />,
+                        headerTitleAlign: "center",
+                        headerTintColor: "#fff",
+                    }
+                } />
+                <Stack.Screen name="CheckTransfer" component={ChechTransfer} options={
+                    {
+                        headerShown: false,
+                    }
+                } />
+                <Stack.Screen name="Request" component={Request} options={
+                    {
+                        headerShown: false,
+                    }
+                } />
+
+            </Stack.Navigator>
+        </NewCard.Provider>
     )
 }
 

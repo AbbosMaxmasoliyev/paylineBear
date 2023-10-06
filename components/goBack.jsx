@@ -13,17 +13,19 @@ const GoBack = ({ name }) => {
         <TouchableOpacity onPress={() => router.goBack(null)} style={{
             flexDirection: "row",
             alignItems: "center",
-            gap: 5
+            gap: 5,
         }}>
             {
                 platform === "ios" ? <View style={{
                     flexDirection: "row",
                     gap: 5,
-                    alignItems:"center"
+                    alignItems: "center"
                 }}>
                     <FontAwesome5 name="chevron-left" size={24} color="#fff" />
                     <Text style={styles.text}>{name}</Text>
-                </View> : <Ionicons name="arrow-back" size={24} color="#fff" />
+                </View>
+                    :
+                    <Ionicons name="arrow-back" size={24} color="#fff" />
             }
         </TouchableOpacity>
     )

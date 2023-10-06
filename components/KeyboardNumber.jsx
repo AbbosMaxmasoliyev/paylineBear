@@ -129,11 +129,9 @@ const styles = StyleSheet.create({
     flex: 1
   },
   container: {
-    height: "100%",
     width: "100%",
     paddingHorizontal: 20,
     // paddingVertical: 10,
-    backgroundColor: "transparent",
     borderRadius: 10,
 
     justifyContent: "center",
@@ -153,7 +151,7 @@ const styles = StyleSheet.create({
   key: {
     width: "auto",
     flex: 1,
-    height: 40,
+    height: 50,
     backgroundColor: "transparent",
     borderRadius: 5,
     marginHorizontal: 5,
@@ -162,7 +160,7 @@ const styles = StyleSheet.create({
 
   },
   keyText: {
-    fontSize: width / 10,
+    fontSize: 28,
     fontFamily: "Montserrat",
     color: "#fff"
   },

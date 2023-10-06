@@ -7,6 +7,7 @@ import {
     KeyboardAvoidingView,
     StatusBar,
     Dimensions,
+    Platform,
 } from "react-native";
 import { CustomStyle } from "../../style/styles";
 import PhoneNumberInput from "../../components/PhoneNumberInput";

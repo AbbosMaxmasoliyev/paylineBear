@@ -1,12 +1,22 @@
 import { Dimensions } from "react-native";
 import { StyleSheet } from "react-native";
 const { height, width } = Dimensions.get("screen")
+
+
+export const YELLOW = "#FF6B01"
+export const DARK = "#242424"
+export const DARK_BLACK = "#070505"
+export const GRAY = "#393E46"
+export const WHITE = "#EEEEEE"
+
+
+
 let GlobalStyle = StyleSheet.create({
   btn: {
-    
+
     borderRadius: 25,
-    
-    backgroundColor: "#FF6A00",
+
+    backgroundColor: GRAY,
     display: "flex",
     overflow: "hidden",
     flexDirection: "column",
@@ -15,31 +25,31 @@ let GlobalStyle = StyleSheet.create({
   },
   btnText: {
     width: "100%",
-    color: "#fff",
+    color: WHITE,
     alignItems: "center",
     textAlign: "center",
-    fontFamily: "MontserratRegular",
+    fontFamily: "Montserrat",
     lineHeight: 40,
     fontSize: 20,
   },
 
   title: {
-    color: "#FFB332",
-    fontFamily: "MontserratRegular",
+    color: WHITE,
+    fontFamily: "Montserrat",
     width: "100%",
     textAlign: "center",
     fontSize: 25,
   },
   background: {
     padding: 5,
-    backgroundColor: "#FF6A00",
+    backgroundColor: DARK,
     borderRadius: 10,
   },
   inputBlock: {
     padding: 12,
     position: "relative",
     width: "80%",
-    backgroundColor: "#fff3",
+    backgroundColor: GRAY,
     justifyContent: "space-between",
     flexDirection: "row",
     paddingHorizontal: 8,
@@ -64,18 +74,18 @@ let GlobalStyle = StyleSheet.create({
     zIndex: 3,
     bottom: 0,
 
-    backgroundColor: "#000",
+    backgroundColor: GRAY,
     borderRadius: 15,
   },
   internal: {
     borderWidth: 1,
-    borderColor: "rgba(255, 130, 0, 0.40)",
+    borderColor: YELLOW,
     borderRadius: 20,
     position: "relative",
-    backgroundColor: "rgba(68, 67, 67, 0.20)",
+    backgroundColor: WHITE,
   },
   gradient: {
-    backgroundColor: "#26262a",
+    backgroundColor: DARK,
     minWidth: width,
     minHeight: "100%",
   },
@@ -100,3 +110,6 @@ let GlobalStyle = StyleSheet.create({
 });
 
 export { GlobalStyle };
+
+
+
